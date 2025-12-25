@@ -5,7 +5,11 @@
         <p>{{  searchQuery }}</p>
         <!-- <ProductList :products="products"/> -->
 
-        <ManageCart :cart-items="cartItems"/>
+        <ManageCart 
+            :cart-items="cartItems"
+            :totalPrice="totalPrice"
+            v-on:message-remove-to-cart="removeToCart"
+        />
 
         <p v-if="filteredProducts.length === 0">No search</p>
         <ProductList 
@@ -93,6 +97,9 @@ export default {
                 return product.name === this.searchQuery
             })
         },
+        totalPrice() {
+            return this.cartItems.reduce((acc, item) => acc + item.price, 0)
+        }
     },
     methods: {
         addToCart(data) {
@@ -106,6 +113,10 @@ export default {
             // }
 
             this.cartItems.push(data)
+        },
+        removeToCart(index) {
+            this.cartItems = this.cartItems.filter((item, itemIndex) => itemIndex !== index)
+            // this.cartItems.splice(index, 1)
         }
     },
     components: {
