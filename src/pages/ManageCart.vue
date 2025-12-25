@@ -67,7 +67,7 @@
 
 
 <!-- Приклад домашнього завдання -->
-
+<!-- 
 <style scoped>
 div {
     background-color: white;
@@ -101,4 +101,4 @@ button {
 button:hover {
     background: darkred;
 }
-</style>
+</style> -->
